@@ -151,8 +151,6 @@ parts:
     plugin: nil
 
     override-build: |
-      #git apply $SNAPCRAFT_STAGE/X005-update.patch
-      env
       git apply ${SNAPCRAFT_PROJECT_DIR}/snap/local/patches/X005-update.patch
       if [ $SNAPCRAFT_ARCH_TRIPLET = "x86_64-linux-gnu" ]; then
         curl -sL https://deb.nodesource.com/setup_10.x | bash -

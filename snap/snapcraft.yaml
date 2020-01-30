@@ -191,9 +191,31 @@ parts:
       esac
       chmod a+x $APPIMAGE
       ./$APPIMAGE --appimage-extract
-      mv ./squashfs-root/* $SNAPCRAFT_PART_INSTALL/app
-      cp ${SNAPCRAFT_PART_BUILD}/bin/* ${SNAPCRAFT_PART_INSTALL}/app/resources/bin
-      find $SNAPCRAFT_PART_INSTALL/app/ -type d -exec chmod 755 {} \;
+      #mv ./squashfs-root/* $SNAPCRAFT_PART_INSTALL/app
+      cd ./squashfs-root
+      cp -pr .DirIcon ${SNAPCRAFT_PART_INSTALL}
+      cp -rp AppRun ${SNAPCRAFT_PART_INSTALL}
+      cp -rp LICENSE.electron.txt ${SNAPCRAFT_PART_INSTALL}
+      cp -rp LICENSES.chromium.html ${SNAPCRAFT_PART_INSTALL}
+      cp -rp chrome-sandbox ${SNAPCRAFT_PART_INSTALL}
+      cp -rp chrome_100_percent.pak ${SNAPCRAFT_PART_INSTALL}
+      cp -rp chrome_200_percent.pak ${SNAPCRAFT_PART_INSTALL}
+      cp -rp icudtl.dat ${SNAPCRAFT_PART_INSTALL}
+      cp -rp libEGL.so ${SNAPCRAFT_PART_INSTALL}
+      cp -rp libGLESv2.so ${SNAPCRAFT_PART_INSTALL}
+      cp -rp libffmpeg.so ${SNAPCRAFT_PART_INSTALL}
+      cp -pr locales ${SNAPCRAFT_PART_INSTALL}
+      cp -pr natives_blob.bin ${SNAPCRAFT_PART_INSTALL}
+      cp -pr resources ${SNAPCRAFT_PART_INSTALL}
+      cp -pr swiftshader ${SNAPCRAFT_PART_INSTALL}
+      cp -pr usr/lib/* ${SNAPCRAFT_PART_INSTALL}/usr/lib
+      cp usr/share/icons/hicolor/512x512/apps/wagerr-electron-app.png ${SNAPCRAFT_PART_INSTALL}/usr/share/icons/hicolor/512x512/apps/
+      cp v8_context_snapshot.bin ${SNAPCRAFT_PART_INSTALL}
+      cp wagerr-electron-app ${SNAPCRAFT_PART_INSTALL}
+      cp wagerr-electron-app.desktop ${SNAPCRAFT_PART_INSTALL}
+      cp wagerr-electron-app.png ${SNAPCRAFT_PART_INSTALL}
+      cp ${SNAPCRAFT_PART_BUILD}/bin/* ${SNAPCRAFT_PART_INSTALL}/resources/bin
+      find $SNAPCRAFT_PART_INSTALL -type d -exec chmod 755 {} \;
       #chmod 4755 $SNAPCRAFT_PART_INSTALL/app/chrome-sandbox
       $SNAPCRAFT_PART_INSTALL/usr/lib/${HOST}/gdk-pixbuf-2.0/gdk-pixbuf-query-loaders > $SNAPCRAFT_PART_INSTALL/usr/lib/${HOST}/gdk-pixbuf-2.0/2.10.0/loaders.cache
 

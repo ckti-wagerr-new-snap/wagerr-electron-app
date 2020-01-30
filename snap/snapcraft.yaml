@@ -151,16 +151,16 @@ parts:
     plugin: nil
 
     override-build: |
-      git apply ${SNAPCRAFT_PROJECT_DIR}/snap/local/patches/X005-update.patch
-      if [ $SNAPCRAFT_ARCH_TRIPLET = "x86_64-linux-gnu" ]; then
-        curl -sL https://deb.nodesource.com/setup_12.x | bash -
-        apt-get -y update
-        apt-get -y install nodejs
-      else
-        apt-get -y install npm nodejs
-      fi
-      #snap install node --edge --classic
-      #snap install node --classic --channel=10/stable
+    #  git apply ${SNAPCRAFT_PROJECT_DIR}/snap/local/patches/X005-update.patch
+    #  if [ $SNAPCRAFT_ARCH_TRIPLET = "x86_64-linux-gnu" ]; then
+    #    curl -sL https://deb.nodesource.com/setup_12.x | bash -
+    #    apt-get -y update
+    #    apt-get -y install nodejs
+    #  else
+    #    apt-get -y install npm nodejs
+    #  fi
+    #  #snap install node --edge --classic
+    #  #snap install node --classic --channel=10/stable
       if [ $SNAPCRAFT_ARCH_TRIPLET = "i386-linux-gnu" ]; then
         HOST="i686-pc-linux-gnu"
       else
@@ -172,16 +172,20 @@ parts:
       cp -p wagerr-3.1.0/bin/* ./bin
       rm -rf wagerr-3.1.0*
       # build using npm
-      npm install
-      npm run package
-      mkdir $SNAPCRAFT_PART_INSTALL/app
+      #npm install
+      #npm run package
+      #mkdir $SNAPCRAFT_PART_INSTALL/app
       cd release
       HOSTSHORT=$(echo ${SNAPCRAFT_ARCH_TRIPLET} | awk -F  "-" '{print $1}')
       case ${HOSTSHORT} in
-        x86_64)   APPIMAGE=$(find *${HOSTSHORT}*.AppImage);;
-        arm)      APPIMAGE=$(find *armv7l*.AppImage);;
-        aarch64)  APPIMAGE=$(find *arm64*.AppImage);;
-        i386)     APPIMAGE=$(find *i386*.AppImage);;
+        x86_64)   wget https://github.com/wagerr/wagerr-electron-app/releases/download/v1.2.0/wagerr-electron-app-1.2.0-linux-x86_64.AppImage
+                  APPIMAGE=$(find *${HOSTSHORT}*.AppImage);;
+        arm)      wget https://github.com/wagerr/wagerr-electron-app/releases/download/v1.2.0/wagerr-electron-app-1.2.0-linux-armv7l.AppImage
+                  APPIMAGE=$(find *armv7l*.AppImage);;
+        aarch64)  wget https://github.com/wagerr/wagerr-electron-app/releases/download/v1.2.0/wagerr-electron-app-1.2.0-linux-arm64.AppImage
+                  APPIMAGE=$(find *arm64*.AppImage);;
+        i386)     wget https://github.com/wagerr/wagerr-electron-app/releases/download/v1.2.0/wagerr-electron-app-1.2.0-linux-i386.AppImage
+                  APPIMAGE=$(find *i386*.AppImage);;
         *)        echo "${HOST} unsupported";
       esac
       chmod a+x $APPIMAGE

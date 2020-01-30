@@ -192,6 +192,7 @@ parts:
       chmod a+x $APPIMAGE
       ./$APPIMAGE --appimage-extract
       mv ./squashfs-root/* $SNAPCRAFT_PART_INSTALL/app
+      mkdir ${SNAPCRAFT_PART_INSTALL}/app/bin
       cp ${SNAPCRAFT_PART_BUILD}/bin/* ${SNAPCRAFT_PART_INSTALL}/app/bin
       find $SNAPCRAFT_PART_INSTALL/app/ -type d -exec chmod 755 {} \;
       #chmod 4755 $SNAPCRAFT_PART_INSTALL/app/chrome-sandbox

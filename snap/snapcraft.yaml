@@ -212,8 +212,8 @@ parts:
       cp usr/share/icons/hicolor/512x512/apps/wagerr-electron-app.png ${SNAPCRAFT_PART_INSTALL}/usr/share/icons/hicolor/512x512/apps/
       cp v8_context_snapshot.bin ${SNAPCRAFT_PART_INSTALL}
       cp wagerr-electron-app ${SNAPCRAFT_PART_INSTALL}
-      cp wagerr-electron-app.desktop ${SNAPCRAFT_PART_INSTALL}
-      cp wagerr-electron-app.png ${SNAPCRAFT_PART_INSTALL}
+      #cp wagerr-electron-app.desktop ${SNAPCRAFT_PART_INSTALL}
+      #cp wagerr-electron-app.png ${SNAPCRAFT_PART_INSTALL}
       cp ${SNAPCRAFT_PART_BUILD}/bin/* ${SNAPCRAFT_PART_INSTALL}/resources/bin
       find $SNAPCRAFT_PART_INSTALL -type d -exec chmod 755 {} \;
       #chmod 4755 $SNAPCRAFT_PART_INSTALL/app/chrome-sandbox

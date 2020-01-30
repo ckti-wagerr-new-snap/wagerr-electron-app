@@ -153,9 +153,9 @@ parts:
     override-build: |
       git apply ${SNAPCRAFT_PROJECT_DIR}/snap/local/patches/X005-update.patch
       #if [ $SNAPCRAFT_ARCH_TRIPLET = "x86_64-linux-gnu" ]; then
-      #  curl -sL https://deb.nodesource.com/setup_10.x | bash -
-      #  sudo apt-get update
-      #  apt-get -y install nodejs
+      curl -sL https://deb.nodesource.com/setup_12.x | bash -
+      apt-get -y update
+      apt-get -y install nodejs
       #elif [ $SNAPCRAFT_ARCH_TRIPLET = "i386-linux-gnu" ]; then
       #  curl -sL https://deb.nodesource.com/setup_10.x | bash -
       #  sudo apt-get update
@@ -163,7 +163,7 @@ parts:
       #else
       #  apt-get -y install npm nodejs
       #fi
-      snap install node --edge --classic
+      #snap install node --edge --classic
       if [ $SNAPCRAFT_ARCH_TRIPLET = "i386-linux-gnu" ]; then
         HOST="i686-pc-linux-gnu"
       else

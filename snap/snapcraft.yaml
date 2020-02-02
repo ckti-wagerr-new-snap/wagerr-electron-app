@@ -45,7 +45,7 @@ description: |
   - bitcointalk (https://bitcointalk.org/index.php?topic=1911583.0)
   - facebook (https://www.facebook.com/wagerr/)
 
-confinement: strict
+confinement: classic
 grade: stable
 base: core18
 
